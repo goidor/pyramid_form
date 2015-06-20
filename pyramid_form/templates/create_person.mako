@@ -24,7 +24,7 @@
         <div class="col-md-10">
           <div class="content">
             <h1><span class="font-semi-bold"></span>Proyecto de Prueba</h1>
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="#">
             <fieldset>
 
             <legend>Registro Nuevo Usuario</legend>
@@ -40,23 +40,15 @@
               % for field in form:
                 <div class="form-group">
                   <!-- Text input-->
-                  <label class="col-md-4 control-label" for="nombre">${ field.label }</label>
+                  ${ field.label(class_='col-md-4 control-label') }
                   <div class="col-md-4">
-                    <input id="${ field.id }" name="${ field.name }" placeholder="${ field.label }" class="form-control input-md" type="text">
-                    ${field(class_='form-control input-md')}
+                    <!--<input class="form-control input-md" type="text" id="${ field.id }" name="${ field.name }" placeholder="${ field.name }"></input>-->
+                    ${field(class_='form-control input-md', placeholder='')}
                     <span class="help-block">${ field.description }</span>
                   </div>
                 </div>
               % endfor
             % endif
-
-            <!-- Textarea -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="textarea">Text Area</label>
-              <div class="col-md-4">                     
-                <textarea class="form-control" id="textarea" name="textarea">default text</textarea>
-              </div>
-            </div>
 
             <div class="form-group">
             	<div class="col-md-4"></div>

@@ -16,8 +16,8 @@ def person_create(request):
     form = PersonCreateForm(request.POST)
 
     if 'submit' in request.POST and form.validate():
-        form.populate_obj(entry)
-        DBSession.add(entry)
+        form.populate_obj(person)
+        DBSession.add(person)
         return HTTPFound(location=request.route_url('home'))
 
     return {"form": form}

@@ -12,7 +12,8 @@ class PersonCreateForm(Form):
                        filters=[strip_filter],
                        description="Solo su nombre. Ej. Bravo")
     correo = TextField('Correo Electrónico', [validators.Length(min=5, max=200)],
-                       filters=[strip_filter])
+                       filters=[strip_filter],
+                       description="Ej. email@correo.com")
     telefono = TextField('Teléfono', [validators.Length(min=10, max=20)],
                        filters=[strip_filter],
                        description="Debe ser solo números Ej. 4585552277")
