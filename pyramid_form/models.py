@@ -2,6 +2,7 @@ from sqlalchemy import (
     Column,
     Index,
     Integer,
+    Numeric,
     Text,
     Unicode,
     UnicodeText,
@@ -30,9 +31,7 @@ class Person(Base):
     __tablename__ = 'persons'
     id = Column(Integer, primary_key=True)
     nombre = Column(Unicode(200), nullable=False)
-    apellido = Column(Unicode(200))
-    correo = Column(Unicode(200))
-    telefono = Column(Integer)
+    apellido = Column(Unicode(200), nullable=False)
+    correo = Column(Unicode(200), unique=True, nullable=False)
+    telefono = Column(Numeric)
     direccion = Column(UnicodeText)
-
-#Index('my_index', MyModel.name, unique=True, mysql_length=255)
