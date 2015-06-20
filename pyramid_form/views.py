@@ -1,5 +1,5 @@
-from pyramid.response import Response
 from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPFound
 
 from sqlalchemy.exc import DBAPIError
 
@@ -15,10 +15,9 @@ def person_create(request):
     person = Person()
     form = PersonCreateForm(request.POST)
 
-    if 'submit' in request.POST and form.validate():
+    if request.method == 'POST' and form.validate():
         form.populate_obj(person)
         DBSession.add(person)
         return HTTPFound(location=request.route_url('home'))
 
     return {"form": form}
-
