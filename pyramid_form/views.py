@@ -16,6 +16,12 @@ def person_create(request):
     form = PersonCreateForm(request.POST)
 
     if request.method == 'POST' and form.validate():
+        try:
+            correo_query = DBSession.query(Person).filter_by(correo=request.POST['correo']).one()
+            if correo_query.correo == request.POST['correo']:
+                return {"form": form, "invalid": True}
+        except:
+            pass
         form.populate_obj(person)
         DBSession.add(person)
         return HTTPFound(location=request.route_url('home'))
