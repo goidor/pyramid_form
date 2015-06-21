@@ -42,26 +42,48 @@
               % endfor
             % endif
 
+            % if invalid:
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                Correo Invalido. Ya esta siendo usado.
+              </div>
+            % endif
+
             <div class="form-group">
               ${ form.nombre.label(class_='col-md-4 control-label') }
+              % if form.nombre.flags.required:
+                <font title="Requerido" style="color:red" size="6">*</font>
+              % endif
               <div class="col-md-4">
-                ${ form.nombre(class_='form-control input-md', minlength=2, maxlength=200, placeholder='Nombre', required='required') }
+                ${ form.nombre(class_='form-control input-md', minlength=2, maxlength=200,
+                placeholder='Nombre', required='required', pattern='[A-ZÑÁÉÍÓÚa-zñáéíóú\s]+', title='Usar solo texto') }
                 <span class="help-block">${ form.nombre.description }</span>
               </div>
             </div>
 
             <div class="form-group">
               ${ form.apellido.label(class_='col-md-4 control-label') }
+              % if form.apellido.flags.required:
+                <font title="Requerido" style="color:red" size="6">*</font>
+              % endif
               <div class="col-md-4">
-                ${ form.apellido(class_='form-control input-md', minlength=2, maxlength=200, placeholder='Apellido', required='required') }
+                ${ form.apellido(class_='form-control input-md', minlength=2, maxlength=200,
+                placeholder='Apellido', required='required', pattern='[A-ZÑÁÉÍÓÚa-zñáéíóú\s]+', title='Usar solo texto') }
                 <span class="help-block">${ form.apellido.description }</span>
               </div>
             </div>
 
             <div class="form-group">
               ${ form.correo.label(class_='col-md-4 control-label') }
+              % if form.correo.flags.required:
+                <font title="Requerido" style="color:red" size="6">*</font>
+              % endif
               <div class="col-md-4">
-                ${ form.correo(class_='form-control input-md', minlength=5, maxlength=200, placeholder='Correo Electrónico', required='required') }
+                ${ form.correo(class_='form-control input-md', minlength=5, maxlength=200, placeholder='Correo Electrónico',
+                required='required', pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", title='Debe ser un correo válido') }
                 <span class="help-block">${ form.correo.description }</span>
               </div>
             </div>
@@ -69,7 +91,8 @@
             <div class="form-group">
               ${ form.telefono.label(class_='col-md-4 control-label') }
               <div class="col-md-4">
-                ${ form.telefono(class_='form-control input-md', maxlength=20, placeholder='Teléfono') }
+                ${ form.telefono(class_='form-control input-md', minlength=8, min=8, maxlength=20, placeholder='Teléfono',
+                pattern='[0-9]+', title='Usar solo números') }
                 <span class="help-block">${ form.telefono.description }</span>
               </div>
             </div>
