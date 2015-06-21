@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from wtforms import TextField, TextAreaField, IntegerField, validators
-from wtforms.ext.i18n.form import Form
+#from wtforms.ext.i18n.form import Form
+from wtforms.form import Form
 
 
 strip_filter = lambda x: x.strip() if x else None
