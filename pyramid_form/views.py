@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
@@ -24,6 +25,6 @@ def person_create(request):
             pass
         form.populate_obj(person)
         DBSession.add(person)
-        return HTTPFound(location=request.route_url('home'))
+        return {"form": form, "guardado": 'Registro guardado con éxito'}
 
     return {"form": form}
